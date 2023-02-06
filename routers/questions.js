@@ -4,7 +4,11 @@ const router = express.Router();
 // api/questions/delete
 
 router.get('/', (req, res) =>{
-    res.send("Questions Home Page");
+    res
+    .status(404)
+    .json({
+        success: false,
+    });
 });
 
 router.get('/delete', (req, res) =>{
