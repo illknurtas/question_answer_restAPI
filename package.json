@@ -1,0 +1,32 @@
+{
+  "name": "question_answer_restapi",
+  "version": "1.0.0",
+  "description": "Express - Question Answer API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "dev":"nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illknurtas/question_answer_restAPI.git"
+  },
+  "keywords": [
+    "express",
+    "rest",
+    "api"
+  ],
+  "author": "İlknur Taş",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/illknurtas/question_answer_restAPI/issues"
+  },
+  "homepage": "https://github.com/illknurtas/question_answer_restAPI#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
