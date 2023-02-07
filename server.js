@@ -1,15 +1,20 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const routers = require("./routers");
+const connectDatabase =require("./helpers/database/connectDatabase");
+const { connect } = require("mongoose");
 
+// Environment variables
 dotenv.config({
     path:"./config/env/config.env",
 });
 
-const app = express(); //creeating app
+// MongoDB Connection
+connectDatabase();
+
+const app = express();
 
 const PORT =process.env.PORT; 
-// process.env.PORT => is the port that assign default in different machines
 
 // ROUTERS MIDDLEWARE
 app.use("/api", routers);
