@@ -1,4 +1,4 @@
-# question_answer_restAPI
+# Question/Answer Rest API Backend Application
 
 It is a question/answer Rest API application that developed by using ExpressJS.
 
