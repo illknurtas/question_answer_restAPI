@@ -1,14 +1,11 @@
 # question_answer_restAPI
 
-## Used Node Modules
+It is a question/answer Rest API application that developed by using ExpressJS.
 
-npm i express
+## Required Technologies
 
-npm i -D nodemon
-
-npm i dotenv
-
-npm i mongoose
+- MongoDB Atlas
+- Postman API
 
 ## MongoDB Connection Link
 mongodb+srv://<username>:<password>@ilknurtas.2uzoynr.mongodb.net/?retryWrites=true&w=majority
