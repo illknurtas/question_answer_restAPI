@@ -1,4 +1,8 @@
+const customErrorHandler = require('../middlewares/errors/customErrorHandler');
+const CustomError = require('../helpers/error/CustomError');
 const User = require ('../models/user');
+
+
 const register = async (req, res, next) => {
     // POST DATA 
     const name ="İlayda günevi";
@@ -20,11 +24,14 @@ const register = async (req, res, next) => {
     catch(err){
         return next(err);
     }
-}
-const errorTest = (req, res, next) => {
-    // some code 
-    throw new Error ("An error occurred");
 };
+
+const errorTest = (req, res, next) => {
+
+    return next(new TypeError("Type Error Message"));
+
+};
+
 module.exports ={
     register,
     errorTest,
