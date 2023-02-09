@@ -57,8 +57,9 @@ const userSchema = new Schema({
 // USER SCHEMA METHODS
 userSchema.methods.generateJWTFromUser = function(){
     const{JWT_SECRET_KEY, JWT_EXPIRE}= process.env;
+
     const payload ={
-        id: this.id,
+        id: this._id,
         name: this.name
     };
     const token = jwt.sign(payload, JWT_SECRET_KEY,{
@@ -76,6 +77,7 @@ userSchema.pre("save", function(next){
     }
     bcrypt.genSalt(10, (err, salt)=>{
         if (err) next(err);
+        
         bcrypt.hash(this.password, salt, (err, hash)=>{
             if (err) next(err);
             this.password = hash;
