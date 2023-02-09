@@ -22,7 +22,10 @@ const getAccessToRoute = (req, res, next) => {
                 new customError("You are not allowed to access",401)
             );
         }
-        console.log(decoded);
+        req.user = {
+            id: decoded.id,
+            name: decoded.name
+        };
         next();
     });
     next();
