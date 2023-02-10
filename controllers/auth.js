@@ -69,7 +69,7 @@ const getUser = (req, res, next) => {
 
 // IMAGE UPLOAD
 const imageUpload = asyncErrorWrapper(async(req, res, next) => {
-    req.status(200)
+    res.status(200)
     .json({
         success: true,
         message:"Image uploaded successfully"

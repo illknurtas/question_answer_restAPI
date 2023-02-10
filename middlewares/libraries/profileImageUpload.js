@@ -25,6 +25,7 @@ const fileFilter = (req, file, cb)=>{
 //     storage: storage,
 //     fileFilter: fileFilter
 // });
-const profileImageUpload = multer({storage,fileFilter});
+
+const profileImageUpload = multer({storage,fileFilter});//old version
 
 module.exports = profileImageUpload;
