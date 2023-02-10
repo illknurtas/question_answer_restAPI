@@ -28,7 +28,7 @@ const login = asyncErrorWrapper(async(req, res, next) => {
         return next(new CustomError("Please check your input(s)",400));
     };
     const user = await User.findOne({email}).select("+password");
-    console.log(user);
+    // console.log(user);
     if(!comparePassword(password,user.password)) {
       return  next(new CustomError("Please check your credentials",400));
     }
@@ -67,9 +67,20 @@ const getUser = (req, res, next) => {
     });
 };
 
+// IMAGE UPLOAD
+const imageUpload = asyncErrorWrapper(async(req, res, next) => {
+    req.status(200)
+    .json({
+        success: true,
+        message:"Image uploaded successfully"
+    });
+});
+
+
 module.exports ={
     register,
     getUser,
     login,
-    logout
+    logout,
+    imageUpload
 };
