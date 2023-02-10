@@ -1,4 +1,4 @@
-const customError = require('../../helpers/error/CustomError');
+const CustomError = require('../../helpers/error/CustomError');
 const jwt = require("jsonwebtoken");
 const {isTokenIncluded, getAccessTokenFromHeader} = require("../../helpers/authorization/tokenHelpers");
 
@@ -10,7 +10,7 @@ const getAccessToRoute = (req, res, next) => {
         // 401 Unauthorized
         // 403 Forbidden
         return next(
-            new customError("You are not allowed to access",401)
+            new CustomError("You are not allowed to access",401)
         );
     };
 
@@ -19,7 +19,7 @@ const getAccessToRoute = (req, res, next) => {
     jwt.verify(accessToken, JWT_SECRET_KEY,(err, decoded)=>{
         if(err){
             return next(
-                new customError("You are not allowed to access",401)
+                new CustomError("You are not allowed to access",401)
             );
         }
         req.user = {
@@ -28,7 +28,7 @@ const getAccessToRoute = (req, res, next) => {
         };
         next();
     });
-    next();
+    // next();
 }
 module.exports = {
     getAccessToRoute

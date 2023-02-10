@@ -84,7 +84,7 @@ userSchema.pre("save", function(next){
             next();
         });
     });
-    next();
+    // next();
 });
 
 

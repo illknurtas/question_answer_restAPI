@@ -20,7 +20,7 @@ const register = asyncErrorWrapper(async(req, res, next) => {
     sendJWTToClient(user,res);
 });
 
-// user login
+// LOGIN 
 const login = asyncErrorWrapper(async(req, res, next) => {
 
     const{email, password} = req.body;
@@ -28,16 +28,35 @@ const login = asyncErrorWrapper(async(req, res, next) => {
         return next(new CustomError("Please check your input(s)",400));
     };
     const user = await User.findOne({email}).select("+password");
-    
+    console.log(user);
     if(!comparePassword(password,user.password)) {
-        return next(new CustomError("Please check your credentials",400));
+      return  next(new CustomError("Please check your credentials",400));
     }
 
     sendJWTToClient(user,res);
     
 });
 
-// User control
+// LOGOUT
+const logout = asyncErrorWrapper(async(req, res, next) => {
+
+    const {NODE_ENV}=process.env;
+
+    return res.status(200)
+    .cookie({
+        httpOnly: true,
+        expires: new Date(Date.now()),
+        secure: NODE_ENV === 'development' ? false : true
+    })
+    .json({
+        success: true,
+        message:"Logged out successfully"
+    })
+
+});
+
+
+// TOKEN TEST
 const getUser = (req, res, next) => {
     res.json({
         success: true,
@@ -51,5 +70,6 @@ const getUser = (req, res, next) => {
 module.exports ={
     register,
     getUser,
-    login
+    login,
+    logout
 };
