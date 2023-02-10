@@ -16,6 +16,6 @@ router.post("/register",register);
 router.post("/login",login);
 router.get("/profile",getAccessToRoute,getUser);
 router.get("/logout",getAccessToRoute,logout);
-router.post("/upload",[getAccessToRoute,profileImageUpload.single("profile_image")], imageUpload);
+router.post("/upload",[getAccessToRoute,profileImageUpload.single("profile_img")], imageUpload);
 
 module.exports = router;
