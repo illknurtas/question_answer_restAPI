@@ -56,7 +56,7 @@ const logout = asyncErrorWrapper(async(req, res, next) => {
 });
 
 
-// TOKEN TEST
+// TOKEN PART
 const getUser = (req, res, next) => {
     res.json({
         success: true,
