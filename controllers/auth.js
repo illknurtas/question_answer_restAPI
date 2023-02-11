@@ -82,12 +82,12 @@ const forgotPassword = asyncErrorWrapper(async(req, res, next) => {
     let transporter = nodemailer.createTransport({
         service:'gmail',
         auth:{
-            user: '', // your gmail address
-            pass:'' // your password given by google
+            user: 'useforanswers2017@gmail.com', // your gmail address
+            pass:'fsxwzqpjkklfpion' // your password given by google
         }
     });
     let mailOptions={
-        from:'', // your gmail address
+        from:'useforanswers2017@gmail.com', // your gmail address
         to: resetEmail,
         subject: 'Reset Your Password',
         html : emailTemplate
