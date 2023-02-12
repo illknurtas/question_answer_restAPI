@@ -16,6 +16,19 @@ const blockUser = asyncErrorWrapper(async(req, res, next)=>{
     });
 });
 
+const deleteUser = asyncErrorWrapper(async(req, res, next)=>{
+    const {id} = req.params;
+    const user = await User.findById(id);
+
+    await user.remove();
+    return res.status(200)
+    .json({
+        success:true,
+        message: "User deleted successfully"
+    });
+});
+
 module.exports = {
-    blockUser
+    blockUser,
+    deleteUser
 };
