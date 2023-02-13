@@ -1,10 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require ("mongoose");
 
-
-const Schemas = mongoose.Schema;
-
-
-const QuestionSchema = new Schema({
+const Schema = mongoose.Schema;
+const QuestionSchema = new mongoose.Schema({
     title:{
         type: String,
         required:[true, "Please provide a title"],
@@ -14,18 +11,21 @@ const QuestionSchema = new Schema({
     content:{
         typeof: String,
         required:[true, "Please provide a content"],
-        minlength:[10,"Please provide a content at least 10 characters"],
+        minlength:[20,"Please provide a content at least 10 characters"],
     },
-    slug: String,
+    slug: {
+        type: String
+    },
     createdAt: {
         type: Date,
         default: Date.now
     },
     user:{
-        type: mongoose.Schema.ObjectId,
-        required: true,
-        ref:"user"
+        type: mongoose.ObjectId,
+        ref: "User",
+        required: true
     }
 });
 
-module.exports = mongoose.model("Question",QuestionSchema);
+
+// module.exports = mongoose.model("Question",QuestionSchema);
