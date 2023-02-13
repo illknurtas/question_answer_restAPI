@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const {isTokenIncluded, getAccessTokenFromHeader} = require("../../helpers/authorization/tokenHelpers");
 const asyncErrorWrapper = require("express-async-handler");
 const User = require("../../models/user");
+const Questions = require("../../models/que");
 
 const getAccessToRoute = (req, res, next) => {
     // Token
@@ -47,7 +48,23 @@ const getAdminAccess = asyncErrorWrapper(async (req, res, next) => {
 }); 
 
 
+const getQuestionOwnerAccess = asyncErrorWrapper(async (req, res, next) => {
+
+    const userId = req.user.id;
+    const questionId = req.params.id;
+
+    const question = Questions.findById(questionId);
+
+    if(question.user !== userId){
+        return next(
+            new CustomError("Only admins can handle this operation!",403)
+        );
+    }
+    next();
+}); 
+
 module.exports = {
     getAccessToRoute,
-    getAdminAccess
+    getAdminAccess,
+    getQuestionOwnerAccess
 };
