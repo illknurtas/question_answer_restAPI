@@ -44,7 +44,6 @@ questionSchema.methods.makeSlug = function(){
         // locale: 'vi',       // language code of the locale to use
         // trim: true         // trim leading and trailing replacement chars, defaults to `true`
     });
-    
 };
 
 module.exports = mongoose.model ("Questions",questionSchema);
