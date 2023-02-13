@@ -27,7 +27,20 @@ const getAllQuestions = asyncErrorWrapper( async(req, res, next)=>{
         data: questions
     });
 });
+
+// ONLY ONE QUESTION
+const getSingleQuestion = asyncErrorWrapper( async(req, res, next)=>{
+    const {id} = req.params;
+    const question = await Questions.findById(id);
+
+    return res.status(200).json({
+        success: true,
+        data: question
+    });
+});
+
 module.exports = {
     askNewQuestion,
-    getAllQuestions
+    getAllQuestions,
+    getSingleQuestion
 }
