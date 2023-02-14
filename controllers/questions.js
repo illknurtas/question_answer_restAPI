@@ -32,15 +32,48 @@ const getAllQuestions = asyncErrorWrapper( async(req, res, next)=>{
 const getSingleQuestion = asyncErrorWrapper( async(req, res, next)=>{
     const {id} = req.params;
     const question = await Questions.findById(id);
-
+    console.log(question);
     return res.status(200).json({
         success: true,
         data: question
     });
 });
 
+// QUESTION EDIT
+const editQuestion = asyncErrorWrapper( async(req, res, next)=>{
+    const {id} = req.params;
+    const {title, content} = req.body;
+
+    let question = await Questions.findById(id);
+    question.title = title;
+    question.content = content;
+
+    question = await Questions.save();
+
+    return res.status(200).json({
+        success : true,
+        data: question
+    });
+});
+
+// DELETE QUESTIONS
+const deleteQuestion = asyncErrorWrapper( async(req, res, next)=>{
+    const {id} = req.params;
+   
+    await Questions.findByIdAndDelete(id);
+
+    return res.status(200).json({
+        success : true,
+        message:"Question deleted successfully"
+    });
+});
+
+
+
 module.exports = {
     askNewQuestion,
     getAllQuestions,
-    getSingleQuestion
+    getSingleQuestion,
+    editQuestion,
+    deleteQuestion
 }

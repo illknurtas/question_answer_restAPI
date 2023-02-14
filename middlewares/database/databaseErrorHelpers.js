@@ -2,6 +2,7 @@ const User = require("../../models/user");
 const Questions = require("../../models/que");
 const asyncErrorWrapper = require('express-async-handler');
 const CustomError = require('../../helpers/error/CustomError');
+const user = require("../../models/user");
 
 
 const checkUserExist = asyncErrorWrapper(async(req, res, next)=>{
@@ -33,5 +34,5 @@ const checkQuestionExist = asyncErrorWrapper(async(req, res, next)=>{
 
 module.exports = {
     checkUserExist,
-    checkQuestionExist,
+    checkQuestionExist
 }

@@ -47,13 +47,13 @@ const getAdminAccess = asyncErrorWrapper(async (req, res, next) => {
     next();
 }); 
 
-
+// QUESTION
 const getQuestionOwnerAccess = asyncErrorWrapper(async (req, res, next) => {
 
     const userId = req.user.id;
     const questionId = req.params.id;
 
-    const question = Questions.findById(questionId);
+    const question = await Questions.findById(questionId);
 
     if(question.user !== userId){
         return next(
