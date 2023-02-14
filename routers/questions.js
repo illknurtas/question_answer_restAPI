@@ -16,7 +16,7 @@ router.get("/:id/like",[getAccessToRoute, checkQuestionExist],likeQuestion);
 router.get("/:id/dislike",[getAccessToRoute, checkQuestionExist],dislikeQuestion);
 
 // ANSWER
-router.use("/:id/answers", checkQuestionExist, answer);
+router.use("/:question_id/answers", checkQuestionExist, answer);
 
 // api/:id/answers
 

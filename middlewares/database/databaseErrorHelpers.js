@@ -21,8 +21,9 @@ const checkUserExist = asyncErrorWrapper(async(req, res, next)=>{
 
 
 const checkQuestionExist = asyncErrorWrapper(async(req, res, next)=>{
-    const {id} = req.params;
-    const question = await Questions.findById(id);
+   
+    const question_id  = req.params.id || req.params.question_id;
+    const question = await Questions.findById(question_id);
 
     if (!question){
         return next(
