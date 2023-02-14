@@ -24,7 +24,11 @@ const questionSchema = new Schema({
         type: mongoose.Schema.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+    likes:[{
+        type: mongoose.Schema.ObjectId,
+        ref: "User"
+    }]
 });
 
 questionSchema.pre("save", function(next){
@@ -37,12 +41,9 @@ questionSchema.pre("save", function(next){
 
 questionSchema.methods.makeSlug = function(){
     return slugify(this.title,{
-        replacement: '-',  // replace spaces with replacement character, defaults to `-`
-        remove: /[*+~.()'"!:@]/g, // remove characters that match regex, defaults to `undefined`
-        lower: true,      // convert to lower case, defaults to `false`
-        // strict: false,     // strip special characters except replacement, defaults to `false`
-        // locale: 'vi',       // language code of the locale to use
-        // trim: true         // trim leading and trailing replacement chars, defaults to `true`
+        replacement: '-',  
+        remove: /[*+~.()'"!:@]/g, 
+        lower: true,     
     });
 };
 
