@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Questions = require('./que');
 const Schema = mongoose.Schema;
 
 const answerSchema = new Schema({
@@ -28,5 +28,20 @@ const answerSchema = new Schema({
     }
 
 });
+answerSchema.pre("save", async function(next){
+    if(!this.isModified("user")) return next();
+    try{
+        const question = new Questions.findById(this.question);
+        question.answer.push(this._id);
 
-module.exports = model.mongoose("Answer",answerSchema);
+        await question.save();
+        next();
+    }
+    catch(err){
+        return next(err);
+    }
+
+    
+})
+
+module.exports = mongoose.model("Answer",answerSchema);
