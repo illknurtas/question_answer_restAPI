@@ -8,7 +8,7 @@ This application is a question/answer Rest API application that developed by usi
 - MongoDB Atlas
 - Postman API
 
-### MONGODB ATLAS
+### MongoDB Atlas
 
 All the data of users, questions and answer is storing in that database.
 
