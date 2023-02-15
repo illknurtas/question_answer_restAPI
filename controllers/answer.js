@@ -24,11 +24,14 @@ const addNewAnswerToQuestion = asyncErrorWrapper(async(req, res, next)=>{
 const getAllAnswersByQuestion = asyncErrorWrapper(async(req, res, next)=>{
 
     const {question_id}= req.params;
-    const question = await Questions.findById(question_id);
+    const question = await Questions.findById(question_id).populate("answers");
+    const answers = question.answers; 
+    
 
     return res.status(200).json({
         success:true,
-        data: answer
+        count: answers.length,
+        data: answers
     });
 });
 
