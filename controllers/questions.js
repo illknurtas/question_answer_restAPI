@@ -22,6 +22,13 @@ const askNewQuestion = asyncErrorWrapper( async(req, res, next)=>{
 const getAllQuestions = asyncErrorWrapper( async(req, res, next)=>{
     
     let query = Questions.find();
+
+    const populate = true;
+    const populateObject ={
+        path:"user",
+        select: "name profile_img",
+    };
+
     if(req.query.search){
 
         const searchObject ={};
@@ -30,6 +37,11 @@ const getAllQuestions = asyncErrorWrapper( async(req, res, next)=>{
         searchObject["title"] = regex;
 
         query = query.where(searchObject);
+    }
+
+    if(populate){
+        query = query.populate(populateObject);
+        
     }
 
     const questions = await query;
