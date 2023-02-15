@@ -20,8 +20,20 @@ const askNewQuestion = asyncErrorWrapper( async(req, res, next)=>{
 
 // ALL QUESTIONS
 const getAllQuestions = asyncErrorWrapper( async(req, res, next)=>{
+    
+    let query = Questions.find();
+    if(req.query.search){
 
-    const questions = await Questions.find();
+        const searchObject ={};
+
+        const regex = new RegExp(req.query.search,"i");
+        searchObject["title"] = regex;
+
+        query = query.where(searchObject);
+    }
+
+    const questions = await query;
+
     return res.status(200).json({
         success: true,
         data: questions
