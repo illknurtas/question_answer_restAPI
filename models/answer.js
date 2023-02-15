@@ -31,7 +31,7 @@ const answerSchema = new Schema({
 answerSchema.pre("save", async function(next){
     if(!this.isModified("user")) return next();
     try{
-        const question = new Questions.findById(this.question);
+        const question = await Questions.findById(this.question);
         question.answer.push(this._id);
 
         await question.save();
