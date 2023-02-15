@@ -131,6 +131,7 @@ const likeQuestion = asyncErrorWrapper( async(req, res, next)=>{
         );
     }
     question.likes.push(req.user.id);
+    question.likeCount = question.likes.length;
 
     await question.save();
     return res.status(200).json({
@@ -152,6 +153,7 @@ const dislikeQuestion = asyncErrorWrapper( async(req, res, next)=>{
     
     const index= question.likes.indexOf(req.user.id);
     question.likes.splice(index, 1);
+    question.likeCount = question.likes.length;
     
     await question.save();
     return res.status(200).json({

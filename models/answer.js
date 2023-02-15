@@ -29,10 +29,13 @@ const answerSchema = new Schema({
 
 });
 answerSchema.pre("save", async function(next){
+
     if(!this.isModified("user")) return next();
+
     try{
         const question = await Questions.findById(this.question);
-        question.answer.push(this._id);
+        question.answers.push(this._id);
+        question.answersCount = question.answers.length;
 
         await question.save();
         next();
