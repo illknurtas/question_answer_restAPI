@@ -28,13 +28,8 @@ const getAllQuestions = asyncErrorWrapper( async(req, res, next)=>{
 
 // ONLY ONE QUESTION
 const getSingleQuestion = asyncErrorWrapper( async(req, res, next)=>{
-    const {id} = req.params;
-    const question = await Questions.findById(id);
-    console.log(question);
-    return res.status(200).json({
-        success: true,
-        data: question
-    });
+    
+    return res.status(200).json(res.queryResults);
 });
 
 // QUESTION EDIT
